@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Onboarding Buddy — Asisten virtual karyawan baru PT Nusantara Teknologi" />
+  <title>Onboarding Buddy — PT Nusantara Teknologi</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind konfigurasi warna kustom -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:  { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#eff6ff' },
+            accent:   { DEFAULT: '#f97316', dark: '#ea580c', light: '#fff7ed' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+
+  <!-- ===================================================
+       HEADER
+       =================================================== -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+
+      <!-- Logo & Nama Aplikasi -->
+      <div class="flex items-center gap-3">
+        <!-- Ikon sederhana tanpa gambar eksternal -->
+        <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-base shadow-sm" aria-hidden="true">
+          OB
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-slate-800 leading-tight">Onboarding Buddy</h1>
+          <p class="text-xs text-slate-500 leading-none">PT Nusantara Teknologi</p>
+        </div>
+      </div>
+
+      <!-- Status Mode -->
+      <div class="flex items-center gap-2">
+        <span id="mode-label" class="text-xs text-slate-500">Mode: Demo</span>
+        <!-- Badge Demo Mode (tersembunyi jika API key aktif) -->
+        <span id="demo-badge" class="demo-badge" aria-live="polite">
+          <span aria-hidden="true">⚡</span> Demo
+        </span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================================================
+       MAIN CONTENT
+       =================================================== -->
+  <main class="max-w-3xl mx-auto px-4 py-6 pb-10">
+
+    <!-- ------------------------------------------------
+         PANEL: API KEY SETTINGS (collapsible)
+         ------------------------------------------------ -->
+    <section class="card mb-5" aria-label="Pengaturan API Key">
+      <details class="group">
+        <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none select-none rounded-xl hover:bg-slate-50 transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="text-base" aria-hidden="true">🔑</span>
+            <span class="text-sm font-semibold text-slate-700">Pengaturan API Key</span>
+            <span class="text-xs text-slate-400 font-normal">(opsional — diperlukan untuk mode LLM)</span>
+          </div>
+          <svg class="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+
+        <!-- Konten panel API key -->
+        <div class="px-5 pb-5 pt-2 border-t border-slate-100">
+
+          <!-- Info banner -->
+          <div class="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 mb-4 text-xs text-amber-800 leading-relaxed" role="note">
+            <strong>ℹ️ Catatan Keamanan:</strong> API key hanya disimpan di memori browser dan akan terhapus saat halaman ditutup/di-refresh.
+            Tanpa API key, aplikasi berjalan dalam <strong>Demo Mode</strong> menggunakan pencocokan kata kunci.
+          </div>
+
+          <!-- Input API Key -->
+          <div class="flex gap-2">
+            <div class="flex-1 relative">
+              <label for="api-key-input" class="block text-xs font-medium text-slate-600 mb-1.5">
+                OpenAI API Key
+              </label>
+              <div class="flex items-center border border-slate-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-shadow">
+                <input
+                  type="password"
+                  id="api-key-input"
+                  name="api-key"
+                  class="api-key-input flex-1 px-3 py-2.5 text-sm bg-white outline-none text-slate-800 placeholder-slate-400"
+                  placeholder="sk-..."
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="api-key-hint"
+                />
+                <button
+                  type="button"
+                  id="toggle-key-btn"
+                  class="px-3 py-2 text-slate-400 hover:text-slate-600 transition-colors"
+                  aria-label="Tampilkan API key"
+                >
+                  👁️
+                </button>
+              </div>
+              <p id="api-key-hint" class="text-xs text-slate-400 mt-1">
+                Gunakan API key dari <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">platform.openai.com</a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </details>
+    </section>
+
+    <!-- ------------------------------------------------
+         TAB NAVIGATION
+         ------------------------------------------------ -->
+    <nav class="flex gap-1 bg-white border border-slate-200 rounded-xl p-1 mb-5 shadow-sm" role="tablist" aria-label="Navigasi fitur">
+      <button
+        id="tab-chat"
+        role="tab"
+        aria-selected="true"
+        aria-controls="panel-chat"
+        class="tab-btn active flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium text-slate-600"
+      >
+        <span aria-hidden="true">💬</span>
+        <span>Chat</span>
+      </button>
+      <button
+        id="tab-checklist"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-checklist"
+        class="tab-btn flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg text-sm font-medium text-slate-600"
+      >
+        <span aria-hidden="true">✅</span>
+        <span>Checklist</span>
+      </button>
+    </nav>
+
+    <!-- ===================================================
+         PANEL CHAT
+         =================================================== -->
+    <section
+      id="panel-chat"
+      role="tabpanel"
+      aria-labelledby="tab-chat"
+      class="card"
+    >
+
+      <!-- Chat Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></div>
+          <span class="text-sm font-semibold text-slate-700">Onboarding Buddy</span>
+          <span class="text-xs text-slate-400">siap membantu</span>
+        </div>
+        <!-- Tombol Hapus Percakapan -->
+        <button
+          id="clear-chat-btn"
+          type="button"
+          class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-red-500 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-colors border border-transparent hover:border-red-100"
+          aria-label="Hapus seluruh percakapan"
+          title="Hapus Percakapan"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4h6v3M4 7h16" />
+          </svg>
+          <span>Hapus Percakapan</span>
+        </button>
+      </div>
+
+      <!-- Area Pesan Chat -->
+      <div
+        id="chat-area"
+        class="chat-scroll overflow-y-auto px-5 py-4 flex flex-col gap-1"
+        style="min-height: 320px; max-height: 420px;"
+        role="log"
+        aria-live="polite"
+        aria-label="Riwayat percakapan"
+        aria-relevant="additions"
+      >
+        <!-- Pesan akan dirender oleh JavaScript -->
+      </div>
+
+      <!-- Quick Question Buttons -->
+      <div class="px-5 py-3 border-t border-slate-100 bg-slate-50/50">
+        <p class="text-xs text-slate-400 mb-2 font-medium">Pertanyaan cepat:</p>
+        <div
+          id="quick-questions"
+          class="flex flex-wrap gap-2"
+          role="group"
+          aria-label="Pilihan pertanyaan cepat"
+        >
+          <button
+            type="button"
+            data-question="Berapa jam kerja di kantor?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            ⏰ Jam kerja
+          </button>
+          <button
+            type="button"
+            data-question="Bagaimana cara mengajukan cuti?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            📅 Cara cuti
+          </button>
+          <button
+            type="button"
+            data-question="Bagaimana cara mengaktifkan akun email kantor?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            📧 Aktivasi email
+          </button>
+          <button
+            type="button"
+            data-question="Bagaimana cara menghubungi HRD?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            📞 Kontak HRD
+          </button>
+          <button
+            type="button"
+            data-question="Kapan gaji dibayarkan?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            💰 Info gaji
+          </button>
+          <button
+            type="button"
+            data-question="Fasilitas apa saja yang tersedia di kantor?"
+            class="quick-btn text-xs px-3 py-1.5 border border-blue-200 text-blue-600 bg-blue-50 rounded-full font-medium"
+          >
+            🏢 Fasilitas kantor
+          </button>
+        </div>
+      </div>
+
+      <!-- Error container -->
+      <div id="chat-error-container" class="px-5" aria-live="assertive"></div>
+
+      <!-- Input Area -->
+      <div class="px-5 py-4 border-t border-slate-200">
+        <div class="flex items-end gap-3">
+
+          <!-- Textarea input pesan -->
+          <div class="flex-1">
+            <label for="chat-input" class="sr-only">Ketik pertanyaan Anda</label>
+            <textarea
+              id="chat-input"
+              name="chat-input"
+              rows="1"
+              class="w-full resize-none border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow bg-white leading-relaxed"
+              placeholder="Ketik pertanyaan Anda… (Enter untuk kirim, Shift+Enter baris baru)"
+              aria-label="Ketik pertanyaan Anda"
+              aria-required="true"
+              maxlength="1000"
+              style="max-height: 120px; overflow-y: auto;"
+            ></textarea>
+          </div>
+
+          <!-- Tombol Kirim -->
+          <button
+            id="send-btn"
+            type="button"
+            class="btn-primary flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center shadow-sm"
+            aria-label="Kirim pesan"
+            title="Kirim (Enter)"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
+
+        </div>
+        <!-- Hint Enter -->
+        <p class="text-xs text-slate-400 mt-2">
+          Tekan <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-xs font-mono">Enter</kbd> untuk mengirim
+          · <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-xs font-mono">Shift+Enter</kbd> untuk baris baru
+        </p>
+      </div>
+
+    </section>
+    <!-- /panel-chat -->
+
+    <!-- ===================================================
+         PANEL CHECKLIST
+         =================================================== -->
+    <section
+      id="panel-checklist"
+      role="tabpanel"
+      aria-labelledby="tab-checklist"
+      class="card hidden"
+    >
+
+      <!-- Checklist Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+        <div>
+          <h2 class="text-sm font-semibold text-slate-700">Checklist Onboarding</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Tugas minggu pertama Anda</p>
+        </div>
+        <!-- Tombol Reset -->
+        <button
+          id="reset-checklist-btn"
+          type="button"
+          class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-amber-600 px-3 py-1.5 rounded-lg hover:bg-amber-50 transition-colors border border-transparent hover:border-amber-100"
+          aria-label="Reset semua checklist"
+          title="Reset Checklist"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span>Reset</span>
+        </button>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="px-5 py-4 bg-slate-50/50 border-b border-slate-100">
+        <div class="flex items-center justify-between mb-2">
+          <span id="progress-count" class="text-xs font-medium text-slate-600">0 dari 10 tugas selesai</span>
+          <span id="progress-label" class="text-xs font-bold text-blue-600">0%</span>
+        </div>
+        <!-- Bar container -->
+        <div
+          class="w-full h-3 bg-slate-200 rounded-full overflow-hidden"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-label="Progress onboarding"
+        >
+          <div id="progress-fill" class="progress-bar-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Daftar Tugas -->
+      <div
+        id="checklist-container"
+        class="px-3 py-3 flex flex-col gap-1"
+        role="list"
+        aria-label="Daftar tugas onboarding"
+      >
+        <!-- Item checklist dirender oleh JavaScript -->
+      </div>
+
+      <!-- Pesan Selamat (muncul jika semua selesai) -->
+      <div
+        id="checklist-congrats"
+        class="hidden mx-5 mb-5 bg-green-50 border border-green-200 rounded-xl px-5 py-4 text-center"
+        role="status"
+        aria-live="polite"
+      >
+        <p class="text-2xl mb-1" aria-hidden="true">🎉</p>
+        <p class="text-sm font-semibold text-green-700">Selamat! Semua tugas onboarding selesai!</p>
+        <p class="text-xs text-green-600 mt-0.5">Anda siap memulai perjalanan karir di PT Nusantara Teknologi.</p>
+      </div>
+
+      <!-- Info localStorage -->
+      <div class="px-5 pb-4">
+        <p class="text-xs text-slate-400 flex items-center gap-1.5">
+          <svg class="w-3 h-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          Progress disimpan otomatis di browser Anda (localStorage).
+        </p>
+      </div>
+
+    </section>
+    <!-- /panel-checklist -->
+
+  </main>
+
+  <!-- ===================================================
+       FOOTER
+       =================================================== -->
+  <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200 bg-white mt-4">
+    <p>
+      <span class="font-medium text-slate-500">Onboarding Buddy</span>
+      &nbsp;·&nbsp; PT Nusantara Teknologi
+      &nbsp;·&nbsp; Versi 1.0
+    </p>
+    <p class="mt-1 text-slate-300">
+      Informasi ini hanya untuk keperluan internal karyawan baru.
+    </p>
+  </footer>
+
+  <!-- ===================================================
+       SCRIPTS (urutan penting: prompt.js sebelum script.js)
+       =================================================== -->
+  <script src="prompt.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

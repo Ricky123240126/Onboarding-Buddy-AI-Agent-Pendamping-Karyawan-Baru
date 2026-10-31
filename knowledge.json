@@ -1,0 +1,89 @@
+{
+  "company": "PT Nusantara Teknologi",
+  "faqs": [
+    {
+      "id": 1,
+      "category": "Jam Kerja",
+      "keywords": ["jam kerja", "jam masuk", "jam pulang", "working hours", "shift", "waktu kerja", "masuk kantor"],
+      "question": "Berapa jam kerja di PT Nusantara Teknologi?",
+      "answer": "Jam kerja di PT Nusantara Teknologi adalah Senin–Jumat, pukul 08.00–17.00 WIB, dengan istirahat pukul 12.00–13.00 WIB. Khusus Jumat, istirahat diperpanjang hingga pukul 13.30 WIB untuk shalat Jumat. Lembur wajib mendapat persetujuan atasan dan akan dikompensasi sesuai peraturan ketenagakerjaan."
+    },
+    {
+      "id": 2,
+      "category": "Cuti",
+      "keywords": ["cuti", "izin", "libur", "leave", "hari libur", "cuti tahunan", "cuti sakit", "cara cuti", "pengajuan cuti"],
+      "question": "Bagaimana cara mengajukan cuti?",
+      "answer": "Pengajuan cuti dilakukan melalui sistem HR Portal di https://hrportal.nusantekno.id minimal 3 hari kerja sebelum tanggal cuti (kecuali cuti darurat/sakit). Cuti tahunan diberikan sebanyak 12 hari kerja per tahun setelah masa probasi 3 bulan. Cuti sakit memerlukan surat dokter jika lebih dari 2 hari. Persetujuan atasan langsung diperlukan untuk semua jenis cuti."
+    },
+    {
+      "id": 3,
+      "category": "Email & Akun",
+      "keywords": ["email", "akun", "email kantor", "aktivasi email", "aktivasi akun", "google workspace", "microsoft", "password", "login"],
+      "question": "Bagaimana cara mengaktifkan akun email kantor?",
+      "answer": "Akun email kantor berformat nama.lengkap@nusantekno.id disiapkan oleh tim IT. Anda akan menerima email aktivasi ke alamat pribadi Anda pada hari pertama kerja. Langkah aktivasi: (1) Buka tautan aktivasi di email pribadi, (2) Buat password baru minimal 8 karakter dengan kombinasi huruf besar, angka, dan simbol, (3) Aktifkan autentikasi dua faktor (2FA) menggunakan Google Authenticator. Hubungi IT Helpdesk di it@nusantekno.id atau ext. 101 jika mengalami kendala."
+    },
+    {
+      "id": 4,
+      "category": "Kontak HRD",
+      "keywords": ["hrd", "hr", "kontak hrd", "human resource", "sumber daya manusia", "telepon hr", "email hrd", "contact hr"],
+      "question": "Bagaimana cara menghubungi HRD?",
+      "answer": "Tim HRD PT Nusantara Teknologi dapat dihubungi melalui: Email: hrd@nusantekno.id | Telepon: (021) 5555-1234 ext. 200 | WhatsApp: 0812-3456-7890 (jam kerja) | Ruangan: Lantai 3, Gedung A. Untuk pertanyaan umum, silakan kunjungi HR Portal di https://hrportal.nusantekno.id."
+    },
+    {
+      "id": 5,
+      "category": "Gaji & Tunjangan",
+      "keywords": ["gaji", "salary", "payroll", "tunjangan", "slip gaji", "payslip", "benefit", "bonus", "asuransi", "bpjs"],
+      "question": "Kapan gaji dibayarkan dan apa saja tunjangannya?",
+      "answer": "Gaji dibayarkan setiap tanggal 25 setiap bulan (jika tanggal 25 jatuh pada hari libur, dibayar hari kerja sebelumnya). Tunjangan yang diberikan meliputi: tunjangan transport (Rp 500.000/bulan), tunjangan makan (Rp 750.000/bulan), BPJS Kesehatan dan Ketenagakerjaan ditanggung perusahaan, tunjangan hari raya (THR) sebesar satu kali gaji pokok, dan asuransi jiwa. Slip gaji dapat diakses melalui HR Portal."
+    },
+    {
+      "id": 6,
+      "category": "Dress Code",
+      "keywords": ["pakaian", "dress code", "seragam", "baju", "berpakaian", "outfit", "penampilan"],
+      "question": "Apa aturan berpakaian di kantor?",
+      "answer": "PT Nusantara Teknologi menerapkan dress code smart casual dari Senin–Kamis. Pakaian harus rapi, sopan, dan profesional. Jeans berwarna gelap diperbolehkan. Kaos oblong, sandal, dan pakaian terlalu santai tidak diperbolehkan. Khusus Jumat, berlaku Free Friday dengan pakaian kasual yang tetap sopan. Seragam batik perusahaan dipakai pada hari Rabu pertama setiap bulan."
+    },
+    {
+      "id": 7,
+      "category": "Fasilitas Kantor",
+      "keywords": ["fasilitas", "kantin", "parkir", "gym", "ruang makan", "mushola", "toilet", "ruang meeting", "wifi"],
+      "question": "Fasilitas apa saja yang tersedia di kantor?",
+      "answer": "Fasilitas kantor PT Nusantara Teknologi meliputi: kantin (Lantai 1, buka 07.30–17.00), area parkir motor dan mobil (basement), mushola (Lantai 2 dan 4), ruang meeting (booking via HR Portal), area lounge dan pantry di setiap lantai, koneksi WiFi gratis (password diperoleh dari IT Helpdesk), dan fasilitas gym sederhana di Lantai 5 (buka 06.00–21.00)."
+    },
+    {
+      "id": 8,
+      "category": "Probasi",
+      "keywords": ["probasi", "probation", "masa percobaan", "kontrak", "karyawan tetap", "permanen", "evaluasi"],
+      "question": "Berapa lama masa probasi karyawan baru?",
+      "answer": "Masa probasi di PT Nusantara Teknologi adalah 3 (tiga) bulan sejak tanggal mulai bekerja. Selama masa probasi, evaluasi kinerja dilakukan oleh atasan langsung pada minggu ke-6 dan di akhir masa probasi. Karyawan yang lolos evaluasi akan diangkat sebagai karyawan tetap dan mendapatkan akses penuh ke seluruh fasilitas dan tunjangan perusahaan."
+    },
+    {
+      "id": 9,
+      "category": "IT & Perangkat",
+      "keywords": ["laptop", "komputer", "perangkat", "it support", "helpdesk", "hardware", "software", "tools", "aplikasi", "ambil laptop"],
+      "question": "Bagaimana cara mendapatkan laptop dan perangkat kerja?",
+      "answer": "Laptop dan perangkat kerja dapat diambil di IT Helpdesk (Lantai 2, Gedung B) pada hari pertama kerja dengan menunjukkan surat keputusan (SK) pengangkatan dan KTP. Anda akan mendapatkan: laptop standar sesuai kebutuhan divisi, headset, mouse, dan tas laptop. Untuk kebutuhan software tambahan, ajukan permintaan melalui helpdesk@nusantekno.id atau ext. 101."
+    },
+    {
+      "id": 10,
+      "category": "Peraturan Perusahaan",
+      "keywords": ["peraturan", "aturan", "kebijakan", "policy", "tata tertib", "SOP", "kode etik", "handbook", "buku panduan"],
+      "question": "Di mana saya bisa membaca peraturan perusahaan?",
+      "answer": "Peraturan perusahaan (Employee Handbook) tersedia di HR Portal dalam format PDF. Anda juga akan mendapatkan salinan fisik pada sesi onboarding hari pertama. Dokumen mencakup: kode etik, tata tertib kerja, kebijakan penggunaan aset perusahaan, panduan media sosial, dan prosedur penyelesaian konflik. Bacalah dan tandatangani formulir acknowledgment pada minggu pertama kerja."
+    },
+    {
+      "id": 11,
+      "category": "Absensi",
+      "keywords": ["absen", "absensi", "kehadiran", "fingerprint", "check in", "check out", "terlambat", "keterlambatan"],
+      "question": "Bagaimana sistem absensi di kantor?",
+      "answer": "Absensi dilakukan melalui mesin fingerprint di pintu masuk setiap gedung, atau melalui aplikasi mobile HRMobile untuk karyawan yang bekerja dari luar kantor (WFH/remote). Check-in dilakukan sebelum pukul 08.15 WIB (toleransi 15 menit). Keterlambatan lebih dari 3 kali dalam sebulan akan dicatat dalam rekam jejak karyawan. Karyawan WFH wajib mendapat persetujuan atasan minimal sehari sebelumnya."
+    },
+    {
+      "id": 12,
+      "category": "Pelatihan & Pengembangan",
+      "keywords": ["training", "pelatihan", "kursus", "sertifikasi", "pengembangan", "belajar", "learning", "LMS", "upskill"],
+      "question": "Apakah perusahaan menyediakan program pelatihan?",
+      "answer": "Ya, PT Nusantara Teknologi menyediakan berbagai program pengembangan karyawan: (1) Program Onboarding selama 2 minggu untuk karyawan baru, (2) Akses ke platform LMS internal di learning.nusantekno.id, (3) Budget pelatihan eksternal Rp 5.000.000/tahun per karyawan (berlaku setelah lulus probasi), (4) Sertifikasi teknis yang relevan ditanggung perusahaan hingga 100%, (5) Program mentoring dengan senior karyawan."
+    }
+  ]
+}
